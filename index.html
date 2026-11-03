@@ -30,8 +30,9 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opa
 /* nav */
 .pill{position:fixed;z-index:50;left:50%;top:calc(env(safe-area-inset-top,0px) + 12px);transform:translateX(-50%);width:min(100% - 1.5rem,520px);display:flex;align-items:center;gap:.8rem;background:#0f100e;border:1px solid var(--line);border-radius:999px;padding:.4rem .4rem .4rem .45rem;font-size:.98rem}
 .pill>span:nth-child(2){flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media(max-width:370px){.pill{font-size:.84rem;gap:.55rem}.navlogo{height:27px;margin-left:.35rem}.pill .dot{margin-right:0}}
 .navlogo{height:32px;width:auto;margin-left:.5rem;flex:none;mix-blend-mode:lighten;-webkit-user-select:none;user-select:none;pointer-events:none}
+@media(max-width:370px){.pill{font-size:.84rem;gap:.55rem}.pill .navlogo{height:27px;margin-left:.35rem}.pill .dot{margin-right:0}}
+@media(max-width:240px){.pill .navlogo{height:24px}.pill>span:nth-child(2){display:none}.pill .menu-btn{margin-left:auto}}
 
 .av{width:42px;height:42px;border-radius:50%;background:var(--text);color:var(--ink);display:grid;place-items:center;font:1.05rem var(--head);flex:none}
 .dot{width:10px;height:10px;border-radius:50%;background:#19c45e;box-shadow:0 0 0 6px rgba(25,196,94,.15);margin-right:.5rem;animation:pulse 2s infinite}
@@ -361,8 +362,9 @@ footer .wrap>small{display:block;margin-top:3rem;color:var(--mute)}
     while(i<P.length-2&&y>P[i+1])i++;
     var t=Math.max(0,Math.min(1,(y-P[i])/(P[i+1]-P[i]||1)));t=ease(t);
     var a=S[i],b=S[i+1],vw=innerWidth/100,vh=innerHeight/100;
-    var mobile=innerWidth<=900,x=mix(a.x,b.x,t)*vw*(mobile?1:.5),yy=mix(a.y,b.y,t)*vh,rotation=mobile?0:mix(a.r,b.r,t);
-    fly.style.transform='translate(-50%,-50%) translate3d('+x+'px,'+yy+'px,0) perspective(900px) rotateY('+rotation+'deg) scale('+mix(a.s,b.s,t)+')';
+    var mobile=innerWidth<=900,x=mix(a.x,b.x,t)*vw*(mobile?1:.5),yy=mix(a.y,b.y,t)*vh,rotation=mobile?0:mix(a.r,b.r,t),scale=mobile?1:mix(a.s,b.s,t);
+    if(mobile)x=Math.min(x,Math.max(0,innerWidth/2-fly.offsetWidth/2-8));
+    fly.style.transform='translate(-50%,-50%) translate3d('+x+'px,'+yy+'px,0) perspective(900px) rotateY('+rotation+'deg) scale('+scale+')';
     fly.style.opacity=mix(a.o,b.o,t);
     var r=rev.getBoundingClientRect(),pr=(innerHeight*.8-r.top)/(r.height+innerHeight*.1);
     var n=Math.round(Math.max(0,Math.min(1,pr))*ws.length);
