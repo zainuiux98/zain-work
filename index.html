@@ -42,9 +42,10 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opa
 .menu-btn i+i{transform:rotate(90deg)}
 .menu-btn[aria-expanded=true] i{transform:rotate(45deg)} .menu-btn[aria-expanded=true] i+i{transform:rotate(-45deg)}
 .sheet{position:fixed;z-index:49;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);width:min(100% - 1.5rem,520px);background:#0f100e;border:1px solid var(--line);border-radius:1.8rem;padding:1.2rem 1.6rem;
-display:grid;opacity:0;visibility:hidden;transform:translateX(-50%) translateY(-8px);transition:.3s}
+display:grid;max-height:calc(100vh - env(safe-area-inset-top,0px) - 82px);max-height:calc(100dvh - env(safe-area-inset-top,0px) - 82px);overflow-y:auto;overscroll-behavior:contain;
+opacity:0;visibility:hidden;transform:translateX(-50%) translateY(-8px);transition:.3s}
 .sheet.open{opacity:1;visibility:visible;transform:translateX(-50%)}
-.sheet a{display:flex;justify-content:space-between;align-items:center;font:2rem/1 var(--head);text-transform:uppercase;padding:.75rem 0}
+.sheet a{display:flex;justify-content:space-between;align-items:center;font:2rem/1 var(--head);text-transform:uppercase;padding:.75rem 0;touch-action:manipulation}
 .sheet a span{font:1.1rem var(--body)}
 
 /* hero */
