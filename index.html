@@ -75,7 +75,7 @@ opacity:0;visibility:hidden;transform:translateX(-50%) translateY(-8px);transiti
 /* flying photo (scroll animation) */
 .fly{position:fixed;z-index:5;left:50%;top:50%;width:min(40vw,230px,21svh);aspect-ratio:.71;pointer-events:none;will-change:transform,opacity}
 .fly .in{width:100%;height:100%;border-radius:1.6rem;background:#222 url(images/img-01.jpg) 50% 24%/cover no-repeat;box-shadow:0 20px 50px rgba(0,0,0,.5);position:relative;animation:grow 1.3s cubic-bezier(.2,.8,.2,1) both}
-@media(max-width:900px){.fly{width:min(28vw,140px,18svh);aspect-ratio:1}.fly .in{background-position:center}.fly .hi{left:4%;width:24%;font-size:1rem}}
+@media(max-width:900px){.fly{width:min(20vw,100px,16svh);aspect-ratio:1}.fly .in{background-position:center}.fly .hi{left:4%;width:24%;font-size:1rem}}
 @keyframes grow{from{transform:scale(.3);opacity:0}}
 .hi{position:absolute;left:-18%;bottom:6%;width:30%;aspect-ratio:1;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:1.3rem}
 .yrs{position:absolute;top:8%;right:6%;background:#101110cc;border:1px solid var(--line);border-radius:999px;padding:.25rem .8rem;font-size:.72rem;color:var(--text)}
@@ -363,7 +363,7 @@ footer .wrap>small{display:block;margin-top:3rem;color:var(--mute)}
     var t=Math.max(0,Math.min(1,(y-P[i])/(P[i+1]-P[i]||1)));t=ease(t);
     var a=S[i],b=S[i+1],vw=innerWidth/100,vh=innerHeight/100;
     var mobile=innerWidth<=900,x=mix(a.x,b.x,t)*vw*(mobile?1:.5),yy=mix(a.y,b.y,t)*vh,rotation=mobile?0:mix(a.r,b.r,t),scale=mobile?1:mix(a.s,b.s,t);
-    if(mobile)x=Math.min(x,Math.max(0,innerWidth/2-fly.offsetWidth/2-8));
+    if(mobile)x=Math.min(x,Math.max(0,document.documentElement.clientWidth/2-fly.offsetWidth/2-24));
     fly.style.transform='translate(-50%,-50%) translate3d('+x+'px,'+yy+'px,0) perspective(900px) rotateY('+rotation+'deg) scale('+scale+')';
     fly.style.opacity=mix(a.o,b.o,t);
     var r=rev.getBoundingClientRect(),pr=(innerHeight*.8-r.top)/(r.height+innerHeight*.1);
